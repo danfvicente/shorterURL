@@ -17,5 +17,6 @@ namespace ShortIn_API.Domain
         public string fullUrl { get; set; }
 
         public string shortUrl { get; set; }
+
     }
 }

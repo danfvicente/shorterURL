@@ -25,6 +25,7 @@ namespace ShortIn_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Url>>> GetUrls()
         {
+                       
             return await _context.Urls.ToListAsync();
         }
 
@@ -32,6 +33,7 @@ namespace ShortIn_API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Url>> GetUrl(int id)
         {
+            
             var url = await _context.Urls.FindAsync(id);
 
             if (url == null)
@@ -39,11 +41,13 @@ namespace ShortIn_API.Controllers
                 return NotFound();
             }
 
+            Response.Redirect(url.fullUrl);
+
             return url;
         }
 
+
         // PUT: api/Urls/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUrl(int id, Url url)
         {
@@ -64,6 +68,7 @@ namespace ShortIn_API.Controllers
                 {
                     return NotFound();
                 }
+
                 else
                 {
                     throw;
@@ -75,11 +80,10 @@ namespace ShortIn_API.Controllers
 
         // POST: api/Urls
         [HttpPost]
-        public async Task<ActionResult<Url>> PostUrl(Url url)
+        public async Task<ActionResult<Url>> PostUrl([FromBody]Url url)
         {
             _context.Urls.Add(url);
             await _context.SaveChangesAsync();
-
 
 
             return CreatedAtAction("GetUrl", new { id = url.urlId }, url);

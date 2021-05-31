@@ -9,8 +9,8 @@ using ShortIn_API.Domain.Context;
 namespace ShortIn_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210526172357_PopulaDB")]
-    partial class PopulaDB
+    [Migration("20210531184035_popularDB")]
+    partial class popularDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
