@@ -13,6 +13,9 @@
         "packagesPath": "C:\\Users\\dvicente\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\dvicente\\source\\repos\\ShortIn_API\\ShortIn_API\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\dvicente\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

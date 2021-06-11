@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ShortIn_API.Integration
 {
-    //interface IUrlRepository
-    //{
-    //    IEnumerable<Url> GetUrl();
-    //}
+    public interface IUrlRepository : IRepository<Url>
+    {
+        IEnumerable<Url> GetUrlById();
+        IEnumerable<Url> GetByShortUrl();
+        void Commit();
+    }
 }
