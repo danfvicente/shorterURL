@@ -16,7 +16,7 @@ namespace ShortIn_API.Integration
         }
         public IEnumerable<Url> GetUrlById()
         {
-            return Get().OrderBy(c => c.urlId).ToList();
+            return Get().ToList();
         }
 
         public IEnumerable<Url> GetByShortUrl()

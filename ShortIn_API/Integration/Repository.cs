@@ -24,7 +24,7 @@ namespace ShortIn_API.Integration
 
         public T GetById(Expression<Func<T, bool>> predicate)
         {
-            return _context.Set<T>().AsNoTracking().SingleOrDefault(predicate);
+            return _context.Set<T>().SingleOrDefault(predicate);
         }
 
         public void Add(T entity)
