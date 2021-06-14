@@ -51,23 +51,25 @@ namespace ShortIn_API.Controllers
 
 
         // PUT: api/Urls/5
-        [HttpPut("{id}")]
-        public IActionResult PutUrl(int id, Url url)
-        {
-            if (id != url.urlId)
-            {
-                return BadRequest();
-            }
+        //[HttpPut("{id}")]
+        //public IActionResult PutUrl(int id, Url url)
+        //{
+        //    if (id != url.urlId)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _urlRepo.Update(url);
-            _urlRepo.Commit();      
-            return Ok();
-        }
+        //    _urlRepo.Update(url);
+        //    _urlRepo.Commit();      
+        //    return Ok();
+        //}
 
         // POST: api/Urls
         [HttpPost]
         public ActionResult<Url> PostUrl([FromBody]Url url)
         {
+            //ajustar (adicionar o corpo da URL completo) 
+            //A20
             url.shortUrl = random.Next(1000).ToString();
             _urlRepo.Add(url);
             _urlRepo.Commit();
@@ -77,20 +79,20 @@ namespace ShortIn_API.Controllers
         }
 
         // DELETE: api/Urls/5
-        [HttpDelete("{id}")]
-        public IActionResult DeleteUrl(int id)
-        {
-            var url = _urlRepo.GetById(p => p.urlId == id);
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteUrl(int id)
+        //{
+        //    var url = _urlRepo.GetById(p => p.urlId == id);
 
-            if (url == null)
-            {
-                return NotFound();
-            }
+        //    if (url == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _urlRepo.Delete(url);
-            _urlRepo.Commit();
+        //    _urlRepo.Delete(url);
+        //    _urlRepo.Commit();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
     }
 }
