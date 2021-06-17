@@ -16,9 +16,23 @@ namespace ShortIn_API.Domain
 
         public void CreateShortURL(Url objUrl)
         {
+            //Lógica para gerar a url 
             objUrl.shortUrl = random.Next(1000).ToString();
-            _urlRepo.Add(objUrl);
-            _urlRepo.Commit();
+
+            if (objUrl.fullUrl.Contains("http://")|| objUrl.fullUrl.Contains("https://"))
+            {
+                _urlRepo.Add(objUrl);
+                _urlRepo.Commit();
+            }
+            else
+            {
+                objUrl.fullUrl = "http://" + objUrl.fullUrl;
+
+                _urlRepo.Add(objUrl);
+                _urlRepo.Commit();
+            }
+
+            
         }
 
         public string GetUrl(string shortUrl)

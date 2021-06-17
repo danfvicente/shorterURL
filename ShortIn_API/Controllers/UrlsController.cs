@@ -12,17 +12,15 @@ namespace ShortIn_API.Controllers
     {
         private readonly IUrlBusiness _urlBusiness;
 
-        Random random = new Random();
-
         public UrlsController(IUrlBusiness context)
         {
             _urlBusiness = context;
         }
 
 
-        // GET: api/Urls/lh1
-        [Route("short/")]
+        // GET: short/urlCurta
         [HttpGet]
+        [Route("short/{id}")]
         public ActionResult<string> GetUrl(string shortUrl)
         {   
             return Redirect(_urlBusiness.GetUrl(shortUrl));
