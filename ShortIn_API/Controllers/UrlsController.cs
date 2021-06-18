@@ -6,8 +6,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ShortIn_API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api")]
     public class UrlsController : ControllerBase
     {
         private readonly IUrlBusiness _urlBusiness;
@@ -20,10 +20,12 @@ namespace ShortIn_API.Controllers
 
         // GET: short/urlCurta
         [HttpGet]
-        [Route("short/{id}")]
-        public ActionResult<string> GetUrl(string shortUrl)
+        [Route("{id}")]
+        public ActionResult GetUrl([FromRoute(Name = "id")]string shortUrl)
         {   
-            return Redirect(_urlBusiness.GetUrl(shortUrl));
+            var url = _urlBusiness.GetUrl(shortUrl);
+            return Redirect(url);            
+
         }
 
         // POST: api/Urls

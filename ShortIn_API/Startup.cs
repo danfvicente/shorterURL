@@ -30,11 +30,11 @@ namespace ShortIn_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //A56
+           
             services.AddScoped<IUrlRepository, UrlRepository>();
+            services.AddScoped<IUrlBusiness, UrlBusiness>();
 
-            //Habilitando a conexão com o Banco
-            //A20
+
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

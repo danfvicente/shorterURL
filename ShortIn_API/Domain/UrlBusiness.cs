@@ -16,30 +16,63 @@ namespace ShortIn_API.Domain
 
         public void CreateShortURL(Url objUrl)
         {
-            //Lógica para gerar a url 
-            objUrl.shortUrl = random.Next(1000).ToString();
-
-            if (objUrl.fullUrl.Contains("http://")|| objUrl.fullUrl.Contains("https://"))
+            try
             {
+                if(objUrl == null)
+                {
+                    throw new ArgumentException("You need to send a correct object body");
+                }
+
+                if (!(objUrl.fullUrl.Contains("http://") || objUrl.fullUrl.Contains("https://")))
+                {
+                    throw new ArgumentException("You must send the url protocol");
+                }
+
+
+                objUrl.shortUrl = randomNumberGenerator();
+                
                 _urlRepo.Add(objUrl);
                 _urlRepo.Commit();
             }
-            else
+            catch (ArgumentException)
             {
-                objUrl.fullUrl = "http://" + objUrl.fullUrl;
-
-                _urlRepo.Add(objUrl);
-                _urlRepo.Commit();
+                throw;
             }
-
+            catch (Exception ex)
+            {
+                throw new Exception("Error trying to generate a new short url.", ex);
+            }
             
         }
 
         public string GetUrl(string shortUrl)
         {
-            var url = _urlRepo.GetById(p => p.shortUrl == shortUrl);
+            try
+            {
+                if (!string.IsNullOrEmpty(shortUrl))
+                {
+                    var url = _urlRepo.GetById(p => p.shortUrl == shortUrl);
+                    return url.fullUrl;
+                }
+                throw new ArgumentException("You must send a valid short Url");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while getting the url", ex);
+            }            
+        }
 
-            return url.fullUrl;
+        private string randomNumberGenerator()
+        {
+            string rndNumber;
+
+            do
+            {
+                rndNumber = random.Next(1000).ToString();
+            }
+            while ((_urlRepo.GetById(p => p.shortUrl == rndNumber)) != null);
+
+            return rndNumber;
         }
     }
 }
