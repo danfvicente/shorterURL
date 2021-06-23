@@ -30,7 +30,7 @@ namespace ShortIn_API.Controllers
 
         // POST: api/Urls
         [HttpPost]
-        public ActionResult<Url> PostUrl([FromBody][Required]Url url)
+        public ActionResult PostUrl([FromBody][Required]Url url)
         {
             _urlBusiness.CreateShortURL(url);
 

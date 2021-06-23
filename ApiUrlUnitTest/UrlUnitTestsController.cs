@@ -4,6 +4,7 @@ using ShortIn_API.Controllers;
 using ShortIn_API.Domain;
 using ShortIn_API.Domain.Context;
 using ShortIn_API.Integration;
+using System;
 using Xunit;
 
 namespace ApiUrlUnitTest
@@ -57,10 +58,12 @@ namespace ApiUrlUnitTest
             };
 
             //Act
-            var data = controller.PostUrl(url);
+            var data = controller.PostUrl(url) as CreatedAtRouteResult;
 
             //Assert
-            Assert.IsType<bool>(data);
+            Assert.NotNull(data);
+            //Assert.Throws<ArgumentException>(() => controller.PostUrl(url));
+            Assert.Equal(201, data.StatusCode);
         }
 
 

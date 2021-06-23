@@ -14,6 +14,7 @@ namespace ShortIn_API.Domain
 
         Random random = new Random();
 
+        
         public void CreateShortURL(Url objUrl)
         {
             try
@@ -29,7 +30,7 @@ namespace ShortIn_API.Domain
                 }
 
 
-                objUrl.shortUrl = randomNumberGenerator();
+                objUrl.shortUrl = RandomNumberGenerator();
                 
                 _urlRepo.Add(objUrl);
                 _urlRepo.Commit();
@@ -62,7 +63,7 @@ namespace ShortIn_API.Domain
             }            
         }
 
-        private string randomNumberGenerator()
+        private string RandomNumberGenerator()
         {
             string rndNumber;
 
