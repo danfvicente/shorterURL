@@ -34,7 +34,7 @@ namespace ShortIn_API.Controllers
         {
             _urlBusiness.CreateShortURL(url);
 
-            return new CreatedAtRouteResult(new { id = url.urlId }, "https://localhost:44381/api/"+url.shortUrl);
+            return new CreatedAtRouteResult(new { id = url.urlId }, "Your new URL: \n https://localhost:44381/api/"+url.shortUrl);
         }
     }
 }
